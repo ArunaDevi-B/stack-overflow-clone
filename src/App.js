@@ -56,11 +56,11 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path= {user ? '/' : "/auth"} component = {user ? StackOverFlow : Auth} />
+          <Route exact path={user? '/user' : "/"} component = {user? StackOverFlow : Auth} />
+
         <PrivateRoute exact path="/add-question" component ={Question} />
         <PrivateRoute exact path="/question" component ={ViewQuestion} />
-        {/* <PrivateRoute exact path= "/" component = {StackOverFlow} /> */}
-        
+        {/* <PrivateRoute exact path= "/" component = {StackOverFlow} /> */}        
         </Switch>
       </Router>
     </div>

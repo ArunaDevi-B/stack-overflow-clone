@@ -32,7 +32,7 @@ function Header() {
         <div className='header-right-container'>
           <span onClick = { ()=> {
             auth.signOut();
-            history.push('/auth');
+            history.push('/');
             } }><Avatar src= {user?.photo} /></span>
           <InboxIcon />
           <svg

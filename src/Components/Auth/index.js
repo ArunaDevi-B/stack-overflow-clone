@@ -50,7 +50,7 @@ function Index() {
             signInWithEmailAndPassword(auth, email, password).then((res)=>{
                 console.log(res);
                 setLoading(false)
-                history.push('/')
+                history.push('/user')
             }).catch((error)=>{
                 console.log(error.code);
                 setError(error.message);
