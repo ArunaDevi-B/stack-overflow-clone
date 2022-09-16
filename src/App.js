@@ -40,7 +40,7 @@ function App() {
       ) : (
       <Redirect 
       to = {{
-      pathname: '/auth',
+      pathname: '/',
       state: {
         from: props.location,
       },
@@ -56,7 +56,9 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path={user? '/user' : "/"} component = {user? StackOverFlow : Auth} />
+          
+          <Route exact path='/' component = {Auth} />
+          <Route exact path='/user' component = {StackOverFlow} />
 
         <PrivateRoute exact path="/add-question" component ={Question} />
         <PrivateRoute exact path="/question" component ={ViewQuestion} />
