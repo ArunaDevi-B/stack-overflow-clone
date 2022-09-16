@@ -1,1 +1,13 @@
 to create a react app = npx create-react-app stack-overflow-clone --template redux
+npm i @mui/material 
+npm i react-quill 
+npm i react-router-dom 
+npm i react-tag-input-component 
+npm i react-html-parser 
+npm i firebase
+npm i html-react-parser
+npm install react-html-parser --force
+npm install react-html-parser --legacy-peer-deps
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material @mui/styled-engine-sc styled-components
+npm install @mui/icons-material
