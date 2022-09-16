@@ -10,7 +10,7 @@ import Question from "./Components/Add-Question/Question";
 import ViewQuestion from "./Components/ViewQuestion";
 import Auth from "./Components/Auth"
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, selectUser } from './features/userSlice';
+import { login, logout, selectUser } from './features/userSlice';
 import {auth} from "./firebase"
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
   useEffect(()=>{
     auth.onAuthStateChanged((authUser)=>{
       if(authUser){
-        dispatcj(login({
+        dispatch(login({
           uid: authUser.uid,
           photo: authUser.photoURL,
           diplayName: authUser.displayName,
@@ -31,15 +31,35 @@ function App() {
       }
     })
   }, [dispatch])
+
+  const PrivateRoute = ({component: Component, ...rest})=>(<Route 
+    {...rest} 
+    render={(props)=> 
+      user ? (
+      <Component {...props} />
+      ) : (
+      <Redirect 
+      to = {{
+      pathname: '/auth',
+      state: {
+        from: props.location,
+      },
+    }}
+       />
+       )
+       }
+       />)
+    
+  ;
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/auth" component = {Auth} />
-        <Route exact path="/add-question" component ={Question} />
-        <Route exact path="/question" component ={ViewQuestion} />
-        <Route exact path= "/" component = {StackOverFlow} />
+          <Route exact path= {user ? '/' : "/auth"} component = {user ? StackOverFlow : Auth} />
+        <PrivateRoute exact path="/add-question" component ={Question} />
+        <PrivateRoute exact path="/question" component ={ViewQuestion} />
+        {/* <PrivateRoute exact path= "/" component = {StackOverFlow} /> */}
         
         </Switch>
       </Router>

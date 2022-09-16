@@ -4,10 +4,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import InboxIcon from '@mui/icons-material/Inbox';
 import { Avatar } from "@mui/material";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
+import { useHistory } from 'react-router-dom';
+import { auth } from '../../firebase';
 
 
 function Header() {
-  return (
+  const user = useSelector(selectUser);
+  const history = useHistory();
+    return (
     <header>
       <div className='header-Container'>
         <div className='header-left'>
@@ -24,7 +30,10 @@ function Header() {
         </div>
         <div className='header-right'>
         <div className='header-right-container'>
-          <Avatar />
+          <span onClick = { ()=> {
+            auth.signOut();
+            history.push('/auth');
+            } }><Avatar src= {user?.photo} /></span>
           <InboxIcon />
           <svg
               aria-hidden="true"

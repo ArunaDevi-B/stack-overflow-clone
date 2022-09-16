@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { auth, provider } from '../../firebase';
 import "./index.css";
 
@@ -10,9 +11,11 @@ function Index() {
     const [username, setUsername]= useState("");
     const [loading, setLoading]= useState("");
     const [error, setError]= useState("");
+    const history = useHistory();
 
     const handleSignInGoodle = ()=>{
         signInWithPopup(auth, provider).then ((res)=>{
+            history.push('/')
             console.log(res);
         })
     }
@@ -26,7 +29,8 @@ function Index() {
             setLoading(false)
         } else {
             createUserWithEmailAndPassword(auth, email, password).then ((res)=>{
-                setLoading(false)
+                setLoading(false);
+                history.push('/')
                 console.log(res);
             }).catch((error)=>{
                 console.log(error);
@@ -46,6 +50,7 @@ function Index() {
             signInWithEmailAndPassword(auth, email, password).then((res)=>{
                 console.log(res);
                 setLoading(false)
+                history.push('/')
             }).catch((error)=>{
                 console.log(error.code);
                 setError(error.message);

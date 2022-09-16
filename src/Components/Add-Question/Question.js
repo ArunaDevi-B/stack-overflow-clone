@@ -18,7 +18,7 @@ function Question() {
             <div className='title'>
                 <h3>Title</h3>
                 <small>Be specific and imaging you're asking a question to another person</small>
-                <input type="text" placeHolder="Add question title" />
+                <input type="text" placeholder="Add question title" />
                 </div>
             </div>
             <div className="question-option">
